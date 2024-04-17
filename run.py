@@ -82,8 +82,11 @@ def add_expense():
     expenses.append_row([expense, amount, date, category])
     print("Expense added successfully!")
 
-# Select a category from predefined options
+
 def select_category():
+    """
+    Select a category from list of options
+    """
     print("Select a category:")
     predefined_categories = ['Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Healthcare', 'Others']
     for i, category in enumerate(predefined_categories, start=1):
@@ -112,11 +115,23 @@ def view_expenses():
         table = tabulate(expenses_list, headers=headers, tablefmt="grid")
         print("List of expenses:")
         print(table)
-    
     input("Press Enter to return to the main menu...\n")
 
 def view_expenses_by_category():
-    print("Viewing expenses...")
+    """
+    View expenses filtered by category
+    """
+    category = select_category()
+    expenses_data = SHEET.worksheet('expenses').get_all_records()
+    category = category.lower()  # Convert the selected category to lowercase
+    filtered_expenses = [expense for expense in expenses_data if expense.get('category', '').lower() == category]
+    if not filtered_expenses:
+        print("No expenses found for this category.")
+    else:
+        expenses_list = [list(expense.values()) for expense in filtered_expenses]
+        headers = ["Expense", "Amount (£)", "Date", "Category"]
+        print(tabulate(expenses_list, headers=headers, tablefmt="grid"))
+    input("Press Enter to return to the main menu...\n")
 
 def budgeting_menu():
     print("Budgeting feature:")
