@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from datetime import datetime
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -13,6 +14,30 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('expense_tracker_PP3')
 
 expenses = SHEET.worksheet('expenses')
+
+# Define maximum lengths for expense name and category
+MAX_EXPENSE_LENGTH = 25
+MAX_CATEGORY_LENGTH = 15
+
+def is_valid_number(number_str):
+    """
+    Check if the input number is valid (two decimal places)
+    """
+    try:
+        number = float(number_str)
+        return round(number, 2) == number and '.' in number_str
+    except ValueError:
+        return False
+
+def is_valid_date(date_str):
+    """
+    Check if the input date is valid (DD/MM/YYYY format)
+    """
+    try:
+        datetime.strptime(date_str, "%d/%m/%Y")
+        return True
+    except ValueError:
+        return False
 
 def main_menu():
     print("Welcome to your personal Expense Tracker")
@@ -30,7 +55,48 @@ def expense_menu():
     return input("Enter your choice: ")
 
 def add_expense():
-    print("Expense set up successfully!")
+    """
+    Add a new expense
+    """
+    expense = input(f"Enter the expense (up to {MAX_EXPENSE_LENGTH} characters): ")
+    while len(expense) == 0:
+        print("Invalid expense description. Must be more than 0 characters.\n")
+        expense = input(f"Enter the expense (up to {MAX_EXPENSE_LENGTH} characters): ")
+
+    while len(expense) > MAX_EXPENSE_LENGTH:
+        expense = input(f"Expense name exceeds maximum length of {MAX_EXPENSE_LENGTH} characters. Please try again: ")
+        
+    amount = input("Enter the amount (to two decimal places): ")
+    while not is_valid_number(amount):
+        amount = input("Invalid input. Please enter a valid number with exactly two decimal places for amount: ")
+    amount = float(amount)
+    
+    date = input("Enter the date (DD/MM/YYYY): ")
+    while not is_valid_date(date):
+        date = input("Invalid date format. Please use DD/MM/YYYY format: ")
+    
+    category = select_category()
+    
+    expenses = SHEET.worksheet('expenses')
+    expenses.append_row([expense, amount, date, category])
+    print("Expense added successfully!")
+
+# Select a category from predefined options
+def select_category():
+    print("Select a category:")
+    predefined_categories = ['Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Healthcare', 'Others']
+    for i, category in enumerate(predefined_categories, start=1):
+        print(f"{i}. {category}")
+    
+    while True:
+        try:
+            choice = int(input("Enter the number corresponding to the category: "))
+            if 1 <= choice <= len(predefined_categories):
+                return predefined_categories[choice - 1]
+            else:
+                print("Invalid choice. Please enter a number corresponding to the category.")
+        except ValueError:
+            print("Invalid choice. Please enter a number.")
 
 def view_expenses():
     print("Viewing expenses...")
@@ -84,6 +150,6 @@ def main():
             break
         else:
             print("Invalid choice. Please try again.")
-            
+
 if __name__ == "__main__":
     main()
