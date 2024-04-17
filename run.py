@@ -14,6 +14,23 @@ SHEET = GSPREAD_CLIENT.open('expense_tracker_PP3')
 
 expenses = SHEET.worksheet('expenses')
 
-data = expenses.get_all_values()
+def main_menu():
+    print("Welcome to your personal Expense Tracker")
+    print("1. Expenses")
+    print("2. Budgeting")
+    print("3. Exit")
+    return input("Enter your choice: ")
 
-print(data)
+def expense_menu():
+    print("Expenses")
+    print("1. Add a new expense")
+    print("2. View all expenses")
+    print("3. View expenses by category")
+    print("4. Return to main menu")
+
+def budgeting_menu():
+    print("Budgeting feature:")
+    print("1. View budgets")
+    print("2. Set up new budget")
+    print("3. Manage budgets")
+    choice = input("Enter your choice: ")
