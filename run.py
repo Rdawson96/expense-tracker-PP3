@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from datetime import datetime
+from tabulate import tabulate
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -99,7 +100,20 @@ def select_category():
             print("Invalid choice. Please enter a number.")
 
 def view_expenses():
-    print("Viewing expenses...")
+    """
+    View all expenses
+    """
+    expenses_data = SHEET.worksheet('expenses').get_all_records()
+    if not expenses_data:
+        print("No expenses found.\n")
+    else:
+        expenses_list = [list(expense.values()) for expense in expenses_data]
+        headers = ["Expense", "Amount (£)", "Date", "Category"]
+        table = tabulate(expenses_list, headers=headers, tablefmt="grid")
+        print("List of expenses:")
+        print(table)
+    
+    input("Press Enter to return to the main menu...\n")
 
 def view_expenses_by_category():
     print("Viewing expenses...")
@@ -134,7 +148,7 @@ def main():
             elif expense_choice == '4':
                 continue
             else:
-                print("Invalid choice. Please try again.")
+                print("Invalid choice. Please try again.\n")
         elif choice == '2':
             budgeting_choice = budgeting_menu()  # Capture the return value
             if budgeting_choice == '1':
@@ -144,12 +158,12 @@ def main():
             elif budgeting_choice == '3':
                 manage_budgets()
             else:
-                print("Invalid choice. Please try again.")
+                print("Invalid choice. Please try again.\n")
         elif choice == '3':
             print("Exiting...")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("Invalid choice. Please try again.\n")
 
 if __name__ == "__main__":
     main()
