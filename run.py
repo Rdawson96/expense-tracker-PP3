@@ -41,25 +41,25 @@ def is_valid_date(date_str):
         return False
 
 def main_menu():
-    print("Welcome to your personal Expense Tracker")
+    print("Welcome to your personal Expense Tracker. Please select an option below: \n")
     print("1. Expenses")
     print("2. Budgeting")
     print("3. Exit")
-    return input("Enter your choice: ")
+    return input("\nEnter your choice: ")
 
 def expense_menu():
-    print("Expenses")
+    print("Expenses\n")
     print("1. Add a new expense")
     print("2. View all expenses")
     print("3. View expenses by category")
     print("4. Return to main menu")
-    return input("Enter your choice: ")
+    return input("\nEnter your choice: ")
 
 def add_expense():
     """
     Add a new expense
     """
-    expense = input(f"Enter the expense (up to {MAX_EXPENSE_LENGTH} characters): ")
+    expense = input(f"\nAdd a name for the expense. For example 'Rent' (up to {MAX_EXPENSE_LENGTH} characters): ")
     while len(expense) == 0:
         print("Invalid expense description. Must be more than 0 characters.\n")
         expense = input(f"Enter the expense (up to {MAX_EXPENSE_LENGTH} characters): ")
@@ -67,12 +67,12 @@ def add_expense():
     while len(expense) > MAX_EXPENSE_LENGTH:
         expense = input(f"Expense name exceeds maximum length of {MAX_EXPENSE_LENGTH} characters. Please try again: ")
         
-    amount = input("Enter the amount (to two decimal places): ")
+    amount = input("\nEnter the expense amount (Has to be to two decimal places): ")
     while not is_valid_number(amount):
         amount = input("Invalid input. Please enter a valid number with exactly two decimal places for amount: ")
     amount = float(amount)
     
-    date = input("Enter the date (DD/MM/YYYY): ")
+    date = input("\nEnter the expense date (DD/MM/YYYY): ")
     while not is_valid_date(date):
         date = input("Invalid date format. Please use DD/MM/YYYY format: ")
     
@@ -80,21 +80,21 @@ def add_expense():
     
     expenses = SHEET.worksheet('expenses')
     expenses.append_row([expense, amount, date, category])
-    print("Expense added successfully!")
+    print("\nExpense added successfully!\n")
 
 
 def select_category():
     """
-    Select a category from list of options
+    Select the category from list of options
     """
-    print("Select a category:")
+    print("\nSelect a category:")
     predefined_categories = ['Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Healthcare', 'Others']
     for i, category in enumerate(predefined_categories, start=1):
         print(f"{i}. {category}")
     
     while True:
         try:
-            choice = int(input("Enter the number corresponding to the category: "))
+            choice = int(input("\nEnter the number corresponding to the category: "))
             if 1 <= choice <= len(predefined_categories):
                 return predefined_categories[choice - 1]
             else:
@@ -113,9 +113,9 @@ def view_expenses():
         expenses_list = [list(expense.values()) for expense in expenses_data]
         headers = ["Expense", "Amount (£)", "Date", "Category"]
         table = tabulate(expenses_list, headers=headers, tablefmt="grid")
-        print("List of expenses:")
+        print("\nList of expenses:")
         print(table)
-    input("Press Enter to return to the main menu...\n")
+    input("\nPress Enter to return to the main menu...\n")
 
 def view_expenses_by_category():
     """
@@ -131,14 +131,15 @@ def view_expenses_by_category():
         expenses_list = [list(expense.values()) for expense in filtered_expenses]
         headers = ["Expense", "Amount (£)", "Date", "Category"]
         print(tabulate(expenses_list, headers=headers, tablefmt="grid"))
-    input("Press Enter to return to the main menu...\n")
+    input("\nPress Enter to return to the main menu...\n")
 
 def budgeting_menu():
-    print("Budgeting feature:")
+    print("Budgeting:\n")
     print("1. View budgets")
     print("2. Set up new budget")
     print("3. Manage budgets")
-    return input("Enter your choice: ")
+    print("4. Return to main menu")
+    return input("\nEnter your choice: ")
 
 def view_budgets():
     print("Viewing budgets...")
@@ -163,7 +164,7 @@ def main():
             elif expense_choice == '4':
                 continue
             else:
-                print("Invalid choice. Please try again.\n")
+                print("\nInvalid choice. Please try again.\n")
         elif choice == '2':
             budgeting_choice = budgeting_menu()  # Capture the return value
             if budgeting_choice == '1':
@@ -172,13 +173,15 @@ def main():
                 setup_budget()
             elif budgeting_choice == '3':
                 manage_budgets()
+            elif budgeting_choice == '4':
+                continue
             else:
-                print("Invalid choice. Please try again.\n")
+                print("\nInvalid choice. Please try again.\n")
         elif choice == '3':
-            print("Exiting...")
+            print("\nExiting...")
             break
         else:
-            print("Invalid choice. Please try again.\n")
+            print("\nInvalid choice. Please try again.\n")
 
 if __name__ == "__main__":
     main()
