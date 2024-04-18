@@ -135,10 +135,9 @@ def view_expenses_by_category():
 
 def budgeting_menu():
     print("Budgeting:\n")
-    print("1. View budgets")
-    print("2. Set up new budget")
-    print("3. Manage budgets")
-    print("4. Return to main menu")
+    print("1. Set up new budget/ Edit existing budget")
+    print("2. View budgets")
+    print("3. Return to main menu")
     return input("\nEnter your choice: ")
 
 def view_budgets():
@@ -166,8 +165,11 @@ def setup_budget():
     category = select_category()
     budgets_worksheet = SHEET.worksheet('budgets')
     
-    budget_amount = float(input(f"Enter the budget amount for '{category}': £"))
-        
+    budget_amount = input(f"Enter the budget amount for '{category}' (Has to be to two decimal places): £")
+    while not is_valid_number(budget_amount):
+        budget_amount = input("Invalid input. Please enter a valid number with exactly two decimal places for amount: ")
+    budget_amount = float(budget_amount)
+
     total_expenses = calculate_total_expenses(category)
         
     remaining_budget = budget_amount - total_expenses
@@ -189,9 +191,6 @@ def calculate_total_expenses(category):
             total_expenses = round(total_expenses, 2)
     return total_expenses
 
-def manage_budgets():
-    print("Managing budgets...")
-
 def main():
     while True:
         choice = main_menu()
@@ -210,12 +209,10 @@ def main():
         elif choice == '2':
             budgeting_choice = budgeting_menu()  # Capture the return value
             if budgeting_choice == '1':
-                view_budgets()
-            elif budgeting_choice == '2':
                 setup_budget()
+            elif budgeting_choice == '2':
+                view_budgets()
             elif budgeting_choice == '3':
-                manage_budgets()
-            elif budgeting_choice == '4':
                 continue
             else:
                 print("\nInvalid choice. Please try again.\n")
