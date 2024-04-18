@@ -142,10 +142,24 @@ def budgeting_menu():
     return input("\nEnter your choice: ")
 
 def view_budgets():
-    print("Viewing budgets...")
+    """
+    View all budgets
+    """
+    budgets_worksheet = SHEET.worksheet('budgets')
+    budgets_data = budgets_worksheet.get_all_records()
+
+    if not budgets_data:
+        print("No budgets found.\n")
+    else:
+        budgets_list = [list(budget.values()) for budget in budgets_data]
+        headers = ["Category", "Budget Amount (£)", "Current Expenses (£)", "Remaining Budget (£)"]
+        print("\nList of budgets:")
+        print(tabulate(budgets_list, headers=headers, tablefmt="grid"))
+
+    input("\nPress Enter to return to the main menu...\n")
 
 def setup_budget():
-    print("Budget set up successfully!")
+
 
 def manage_budgets():
     print("Managing budgets...")
