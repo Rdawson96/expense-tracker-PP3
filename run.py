@@ -159,7 +159,35 @@ def view_budgets():
     input("\nPress Enter to return to the main menu...\n")
 
 def setup_budget():
+    """
+    Add new budget for the given category.
+    """
+    print("Setting up a new budget...")
+    category = select_category()
+    budgets_worksheet = SHEET.worksheet('budgets')
+    
+    budget_amount = float(input(f"Enter the budget amount for '{category}': £"))
+        
+    total_expenses = calculate_total_expenses(category)
+        
+    remaining_budget = budget_amount - total_expenses
+        
+    budgets_worksheet.append_row([category, budget_amount, total_expenses, remaining_budget])
+        
+    print("\nBudget set up successfully!")
 
+def calculate_total_expenses(category):
+    """
+    Calculate total expenses for the given category.
+    """
+    expenses_data = SHEET.worksheet('expenses').get_all_records()
+    total_expenses = 0
+    category = category.lower()
+    for expense in expenses_data:
+        if expense.get('category', '').lower() == category:
+            total_expenses += expense.get('amount', 0)
+            total_expenses = round(total_expenses, 2)
+    return total_expenses
 
 def manage_budgets():
     print("Managing budgets...")
