@@ -14,8 +14,6 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('expense_tracker_PP3')
 
-expenses = SHEET.worksheet('expenses')
-
 # Define maximum lengths for expense name and category
 MAX_EXPENSE_LENGTH = 25
 MAX_CATEGORY_LENGTH = 15
@@ -88,15 +86,15 @@ def select_category():
     Select the category from list of options
     """
     print("\nSelect a category:")
-    predefined_categories = ['Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Healthcare', 'Others']
-    for i, category in enumerate(predefined_categories, start=1):
+    listed_categories = ['Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Healthcare', 'Others']
+    for i, category in enumerate(listed_categories, start=1):
         print(f"{i}. {category}")
     
     while True:
         try:
             choice = int(input("\nEnter the number corresponding to the category: "))
-            if 1 <= choice <= len(predefined_categories):
-                return predefined_categories[choice - 1]
+            if 1 <= choice <= len(listed_categories):
+                return listed_categories[choice - 1]
             else:
                 print("Invalid choice. Please enter a number corresponding to the category.")
         except ValueError:
@@ -157,17 +155,58 @@ def view_budgets():
 
     input("\nPress Enter to return to the main menu...\n")
 
+def update_budget_amount(category, new_budget_amount):
+    """
+    Update the budget amount for the given category and recalculate the remaining budget.
+    """
+
+    budgets_worksheet = SHEET.worksheet('budgets')
+    budgets_data = budgets_worksheet.get_all_records()
+    category = category.lower()
+    for budget_row in budgets_data:
+        if budget_row['budget category'].lower() == category:
+            expenses_data = SHEET.worksheet('expenses').get_all_records()
+            total_expenses = sum(expense['amount'] for expense in expenses_data if expense.get('category', '').lower() == category)
+            cell_row = budgets_data.index(budget_row) + 2
+            budgets_worksheet.update_cell(cell_row, 2, new_budget_amount)
+            budgets_worksheet.update_cell(cell_row, 3, total_expenses)
+            remaining_budget = new_budget_amount - total_expenses
+            budgets_worksheet.update_cell(cell_row, 4, remaining_budget)
+            print("Budget amount updated successfully!")
+            break
+
 def setup_budget():
     """
     Add new budget for the given category.
     """
-    print("Setting up a new budget...")
+    print("Select the category for the budget you would like to add/ update:")
     category = select_category()
     budgets_worksheet = SHEET.worksheet('budgets')
     
-    budget_amount = input(f"Enter the budget amount for '{category}' (Has to be to two decimal places): £")
+    budgets_data = budgets_worksheet.get_all_records()
+    for budget_row in budgets_data:
+        if budget_row['budget category'].lower() == category.lower():
+            print(f"\nA budget already exists for the category '{category}'.")
+            update_option = input("\nDo you want to update the existing budget? (yes/no): ").lower()
+            if update_option == 'yes':
+                new_budget_amount = input("\nEnter the new budget amount: £")
+                while not is_valid_number(new_budget_amount):
+                    new_budget_amount = input("\nInvalid input. Please enter a valid number with exactly two decimal places for amount: ")
+                new_budget_amount = float(new_budget_amount)
+                update_budget_amount(category, new_budget_amount)
+                return
+            else:
+                print("Returning to the main menu...")
+                return
+
+    
+
+    # If no existing budget found, proceed to set up a new budget
+
+    budget_amount = input(f"\nEnter the budget amount for '{category}' (Has to be to two decimal places): £")
+    
     while not is_valid_number(budget_amount):
-        budget_amount = input("Invalid input. Please enter a valid number with exactly two decimal places for amount: ")
+        budget_amount = input("\nInvalid input. Please enter a valid number with exactly two decimal places for amount: ")
     budget_amount = float(budget_amount)
 
     total_expenses = calculate_total_expenses(category)
