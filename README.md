@@ -34,7 +34,7 @@
 
 * Category-Based Budgeting: Enable users to set up budgets for different expense categories to better manage their finances.
 
-*Real-Time Updates: Provide real-time updates on expenses and budgets to keep users informed about their financial status.
+* Real-Time Updates: Provide real-time updates on expenses and budgets to keep users informed about their financial status.
 
 ### User stories
 * As a user, I want to add new expenses to my budget plan, including details such as expense name, amount, date, and category, so that I can keep track of my spending habits accurately.
@@ -98,6 +98,10 @@ Users can view all budgets they have set up, including details such as category,
 
 ### Code validation
 
+[Code Institutes Python Linter](https://pep8ci.herokuapp.com/#) was used to help me validate my code. I pointed out that I had a lot of missing blank lines between functions, redundant white space and that a lot of my lines were greater than 79 characters long.
+
+
+
 ### Manual testing
 
 <table>
@@ -130,7 +134,7 @@ Users can view all budgets they have set up, including details such as category,
       <td></td>
     </tr>
     <tr>
-      <td>Add New Expense</td>
+      <td rowspan="6">Add New Expense</td>
       <td>Validate expense name</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
@@ -148,48 +152,50 @@ Users can view all budgets they have set up, including details such as category,
       <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>Validate expense date format</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>Validate expense category is a number in list</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>Validate expense category is a number</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>View All Expenses</td>
+      <td rowspan="2">View All Expenses</td>
       <td>Display expense table</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>Option to go back to menu</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>View Expenses by Category</td>
+      <td rowspan="2">View Expenses by Category</td>
       <td>Display list of categories</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td rowspan="3">Budget Menu</td>
+      <td>Option to go back to menu</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Budget Menu</td>
       <td>Budget category</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
+      <td rowspan="4">Set up new/ Edit existing budget</td>
       <td>Budget amount is a number</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
@@ -201,10 +207,36 @@ Users can view all budgets they have set up, including details such as category,
     </tr>
     <tr>
       <td>Duplicate budget category (Yes/No)</td>
+      <td>IMAGE PLACEHOLDER</td>
       <td></td>
+    </tr>
+    <tr>
+      <td>Enter new budget amount</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
 </table>
 
+## Deployment 
 
+The application has been deployed using [Heroku](https://id.heroku.com/) by following these steps:
+
+[Heroku](https://id.heroku.com/) was used to deploy the application.
+
+1. Create the requirements.txt file and run: `pip3 freeze > requirements.txt` in the console.
+2. Commit changes and push them to GitHub.
+3. Go to the Heroku's website.
+4. From the Heroku dashboard, click on "Create new app".
+5. Enter the "App name" and "Choose a region" before clicking on "Create app".
+6. Go to "Config Vars" under the "Settings" tab.
+7. Click on "Reveals Config Vars" and add the KEY: CREDS and the VALUE stored in creds.json file if needed.
+8. Add the Config Var, KEY: PORT and VALUE: 8000.
+9. Go to "Buildpacks" section and click "Add buildpack".
+10. Select "python" and click "Save changes"
+11. Add "nodejs" buildpack as well using the same process.
+12. Go to "Deployment method", under the "Deploy" tab select "GitHub" and click on "Connect to GitHub".
+13. Go to "Connect to GitHub" section and "Search" the repository to be deployed.
+14. Click "Connect" next the repository name.
+15. Choose "Automatic deploys" or "Manual deploys" to deploy your application.
+
+## Credits
