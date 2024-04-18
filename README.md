@@ -71,3 +71,22 @@ Users can set up a new budget or edit an existing budget for different expense c
 
 ### View Budgets
 Users can view all budgets they have set up, including details such as category, budget amount, current expenses, and remaining budget.
+
+## Technologies Used
+
+### Language Used
+
+* [Python3](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+### Frameworks, Libraries and Programs Used
+
+* [GitHub](https://github.com/) was used to store the project after pushing.
+
+* [GitPod](https://gitpod.io/) was used for writing code, committing, and then pushing to GitHub.
+
+* [Heroku](https://id.heroku.com/) was used to deploy the application.
+
+* [Tabulate](https://pypi.org/project/tabulate/) was used to print table in a readable manner
+
+* [draw.io](https://app.diagrams.net/) was used to create the flowchart diagram
+
