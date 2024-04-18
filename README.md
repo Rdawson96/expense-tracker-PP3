@@ -88,5 +88,123 @@ Users can view all budgets they have set up, including details such as category,
 
 * [Tabulate](https://pypi.org/project/tabulate/) was used to print table in a readable manner
 
+* [Code Institutes Python Linter](https://pep8ci.herokuapp.com/#) was used to help me validate my code
+
 * [draw.io](https://app.diagrams.net/) was used to create the flowchart diagram
+
+## Testing
+
+### Testing User Stories
+
+### Code validation
+
+### Manual testing
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Outcome</th>
+        <th>Example</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+      <td rowspan="2">Main Menu</td>
+      <td>Validate if input is not a number</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Validate if number isn't in selection</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="2">Expense Menu</td>
+      <td>Validate if input is not a number</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Validate if number isn't in selection</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Add New Expense</td>
+      <td>Validate expense name</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Validate expense amount is a number</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Validate expense amount is to two decimal places</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Validate expense date format</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Validate expense category is a number in list</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Validate expense category is a number</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>View All Expenses</td>
+      <td>Display expense table</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Option to go back to menu</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>View Expenses by Category</td>
+      <td>Display list of categories</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="3">Budget Menu</td>
+      <td>Budget category</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Budget amount is a number</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Budget amount is to two decimal places</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Duplicate budget category (Yes/No)</td>
+      <td></td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+</table>
+
 
