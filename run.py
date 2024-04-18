@@ -7,7 +7,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
-    ]
+]
 
 CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
@@ -17,6 +17,7 @@ SHEET = GSPREAD_CLIENT.open('expense_tracker_PP3')
 # Define maximum lengths for expense name and category
 MAX_EXPENSE_LENGTH = 25
 MAX_CATEGORY_LENGTH = 15
+
 
 def is_valid_number(number_str):
     """
@@ -28,6 +29,7 @@ def is_valid_number(number_str):
     except ValueError:
         return False
 
+
 def is_valid_date(date_str):
     """
     Check if the input date is valid (DD/MM/YYYY format)
@@ -38,12 +40,15 @@ def is_valid_date(date_str):
     except ValueError:
         return False
 
+
 def main_menu():
-    print("Welcome to your personal Expense Tracker. Please select an option below: \n")
+    print("Welcome to your personal Expense Tracker."
+          "Please select an option below: \n")
     print("1. Expenses")
     print("2. Budgeting")
     print("3. Exit")
     return input("\nEnter your choice: ")
+
 
 def expense_menu():
     print("Expenses\n")
@@ -53,53 +58,70 @@ def expense_menu():
     print("4. Return to main menu")
     return input("\nEnter your choice: ")
 
+
 def add_expense():
     """
     Add a new expense
     """
-    expense = input(f"\nAdd a name for the expense. For example 'Rent' (up to {MAX_EXPENSE_LENGTH} characters): ")
+    expense = input(f"\nAdd a name for the expense."
+                    f"For example 'Rent' (up to {MAX_EXPENSE_LENGTH}"
+                    "characters): ")
     while len(expense) == 0:
         print("Invalid expense description. Must be more than 0 characters.\n")
-        expense = input(f"Enter the expense (up to {MAX_EXPENSE_LENGTH} characters): ")
+        expense = input(f"Enter the expense (up to {MAX_EXPENSE_LENGTH}"
+                        "characters): ")
 
     while len(expense) > MAX_EXPENSE_LENGTH:
-        expense = input(f"Expense name exceeds maximum length of {MAX_EXPENSE_LENGTH} characters. Please try again: ")
-        
-    amount = input("\nEnter the expense amount (Has to be to two decimal places): ")
+        expense = input(
+            f"Expense name exceeds maximum length of {MAX_EXPENSE_LENGTH}"
+            "characters. Please try again: ")
+
+    amount = input("\nEnter the expense amount"
+                   "(Has to be to two decimal places): ")
     while not is_valid_number(amount):
-        amount = input("Invalid input. Please enter a valid number with exactly two decimal places for amount: ")
+        amount = input("Invalid input. Please enter a valid number "
+                       "with exactly two decimal places for amount: ")
     amount = float(amount)
-    
+
     date = input("\nEnter the expense date (DD/MM/YYYY): ")
     while not is_valid_date(date):
         date = input("Invalid date format. Please use DD/MM/YYYY format: ")
-    
+
     category = select_category()
-    
+
     expenses = SHEET.worksheet('expenses')
     expenses.append_row([expense, amount, date, category])
     print("\nExpense added successfully!\n")
-    
+
     update_budget(category, amount)
+
 
 def select_category():
     """
     Select the category from list of options
     """
     print("\nSelect a category:")
-    listed_categories = ['Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Healthcare', 'Others']
+    listed_categories = ['Groceries',
+                         'Utilities',
+                         'Transportation',
+                         'Entertainment',
+                         'Healthcare',
+                         'Others']
     for i, category in enumerate(listed_categories, start=1):
         print(f"{i}. {category}")
-    
+
     while True:
         try:
-            choice = int(input("\nEnter the number corresponding to the category: "))
+            choice = int(input("\nEnter the number corresponding"
+                               "to the category: "))
             if 1 <= choice <= len(listed_categories):
                 return listed_categories[choice - 1]
             else:
-                print("Invalid choice. Please enter a number corresponding to the category.")
+                print("Invalid choice."
+                      "Please enter a number corresponding to the category.")
         except ValueError:
             print("Invalid choice. Please enter a number.")
+
 
 def view_expenses():
     """
@@ -116,6 +138,7 @@ def view_expenses():
         print(table)
     input("\nPress Enter to return to the main menu...\n")
 
+
 def view_expenses_by_category():
     """
     View expenses filtered by category
@@ -123,14 +146,19 @@ def view_expenses_by_category():
     category = select_category()
     expenses_data = SHEET.worksheet('expenses').get_all_records()
     category = category.lower()  # Convert the selected category to lowercase
-    filtered_expenses = [expense for expense in expenses_data if expense.get('category', '').lower() == category]
+    filtered_expenses = [expense for expense in expenses_data
+                         if expense.get('category', '').lower() == category]
     if not filtered_expenses:
         print("No expenses found for this category.")
     else:
-        expenses_list = [list(expense.values()) for expense in filtered_expenses]
+        expenses_list = []
+        for expense in filtered_expenses:
+            expenses_list.append(list(expense.values()))
+
         headers = ["Expense", "Amount (£)", "Date", "Category"]
         print(tabulate(expenses_list, headers=headers, tablefmt="grid"))
     input("\nPress Enter to return to the main menu...\n")
+
 
 def budgeting_menu():
     print("Budgeting:\n")
@@ -138,6 +166,7 @@ def budgeting_menu():
     print("2. View budgets")
     print("3. Return to main menu")
     return input("\nEnter your choice: ")
+
 
 def view_budgets():
     """
@@ -150,11 +179,15 @@ def view_budgets():
         print("No budgets found.\n")
     else:
         budgets_list = [list(budget.values()) for budget in budgets_data]
-        headers = ["Category", "Budget Amount (£)", "Current Expenses (£)", "Remaining Budget (£)"]
+        headers = ["Category",
+                   "Budget Amount (£)",
+                   "Current Expenses (£)",
+                   "Remaining Budget (£)"]
         print("\nList of budgets:")
         print(tabulate(budgets_list, headers=headers, tablefmt="grid"))
 
     input("\nPress Enter to return to the main menu...\n")
+
 
 def update_budget(category, expense_amount):
     """
@@ -163,27 +196,32 @@ def update_budget(category, expense_amount):
     budgets_worksheet = SHEET.worksheet('budgets')
     budgets_data = budgets_worksheet.get_all_records()
     category = category.lower()
-    for budgets in budgets_data: 
+    for budgets in budgets_data:
         if budgets['budget category'].lower() == category:
             total_expenses = budgets['current expenses'] + expense_amount
             remaining_budget = budgets['budget amount'] - total_expenses
             cell_row = budgets_data.index(budgets) + 2
-            budgets_worksheet.update_cell(cell_row, 3, total_expenses) 
-            budgets_worksheet.update_cell(cell_row, 4, remaining_budget)  
+            budgets_worksheet.update_cell(cell_row, 3, total_expenses)
+            budgets_worksheet.update_cell(cell_row, 4, remaining_budget)
             break
+
 
 def update_budget_amount(category, new_budget_amount):
     """
-    Update the budget amount for the given category and recalculate the remaining budget.
+    Update the total expenses for the given category
+    and recalculate the remaining budget.
     """
-
     budgets_worksheet = SHEET.worksheet('budgets')
     budgets_data = budgets_worksheet.get_all_records()
     category = category.lower()
     for budget_row in budgets_data:
         if budget_row['budget category'].lower() == category:
             expenses_data = SHEET.worksheet('expenses').get_all_records()
-            total_expenses = sum(expense['amount'] for expense in expenses_data if expense.get('category', '').lower() == category)
+            total_expenses = 0
+            for expense in expenses_data:
+                if expense.get('category', '').lower() == category.lower():
+                    total_expenses += expense['amount']
+
             cell_row = budgets_data.index(budget_row) + 2
             budgets_worksheet.update_cell(cell_row, 2, new_budget_amount)
             budgets_worksheet.update_cell(cell_row, 3, total_expenses)
@@ -192,23 +230,30 @@ def update_budget_amount(category, new_budget_amount):
             print("Budget amount updated successfully!")
             break
 
+
 def setup_budget():
     """
-    Add new budget for the given category.
+    Add new budget for the given category and check if a budget
+    already exists for the specified category
     """
     print("Select the category for the budget you would like to add/ update:")
     category = select_category()
     budgets_worksheet = SHEET.worksheet('budgets')
-    
     budgets_data = budgets_worksheet.get_all_records()
     for budget_row in budgets_data:
         if budget_row['budget category'].lower() == category.lower():
             print(f"\nA budget already exists for the category '{category}'.")
-            update_option = input("\nDo you want to update the existing budget? (yes/no): ").lower()
+            update_option = input(
+                                  "\nDo you want to update the existing"
+                                  "budget? (yes/no):").lower()
             if update_option == 'yes':
                 new_budget_amount = input("\nEnter the new budget amount: £")
                 while not is_valid_number(new_budget_amount):
-                    new_budget_amount = input("\nInvalid input. Please enter a valid number with exactly two decimal places for amount: ")
+                    new_budget_amount = input(
+                        "\nInvalid input."
+                        "Please enter a valid number"
+                        "with exactly two decimal places: "
+                        )
                 new_budget_amount = float(new_budget_amount)
                 update_budget_amount(category, new_budget_amount)
                 return
@@ -216,23 +261,24 @@ def setup_budget():
                 print("Returning to the main menu...")
                 return
 
-    
-
     # If no existing budget found, proceed to set up a new budget
-
-    budget_amount = input(f"\nEnter the budget amount for '{category}' (Has to be to two decimal places): £")
-    
+    budget_amount = input(
+        f"\nEnter the budget amount for '{category}'"
+        "(Has to be to two decimal places): £")
     while not is_valid_number(budget_amount):
-        budget_amount = input("\nInvalid input. Please enter a valid number with exactly two decimal places for amount: ")
+        budget_amount = input(
+            "\nInvalid input."
+            "Please enter a valid number with exactly two decimal places:")
     budget_amount = float(budget_amount)
 
     total_expenses = calculate_total_expenses(category)
-        
     remaining_budget = budget_amount - total_expenses
-        
-    budgets_worksheet.append_row([category, budget_amount, total_expenses, remaining_budget])
-        
+
+    budgets_worksheet.append_row(
+        [category, budget_amount, total_expenses, remaining_budget]
+        )
     print("\nBudget set up successfully!")
+
 
 def calculate_total_expenses(category):
     """
@@ -246,6 +292,7 @@ def calculate_total_expenses(category):
             total_expenses += expense.get('amount', 0)
             total_expenses = round(total_expenses, 2)
     return total_expenses
+
 
 def main():
     while True:
@@ -277,6 +324,7 @@ def main():
             break
         else:
             print("\nInvalid choice. Please try again.\n")
+
 
 if __name__ == "__main__":
     main()
