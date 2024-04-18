@@ -79,7 +79,8 @@ def add_expense():
     expenses = SHEET.worksheet('expenses')
     expenses.append_row([expense, amount, date, category])
     print("\nExpense added successfully!\n")
-
+    
+    update_budget(category, amount)
 
 def select_category():
     """
@@ -154,6 +155,22 @@ def view_budgets():
         print(tabulate(budgets_list, headers=headers, tablefmt="grid"))
 
     input("\nPress Enter to return to the main menu...\n")
+
+def update_budget(category, expense_amount):
+    """
+    Update the budget for the given category
+    """
+    budgets_worksheet = SHEET.worksheet('budgets')
+    budgets_data = budgets_worksheet.get_all_records()
+    category = category.lower()
+    for budgets in budgets_data: 
+        if budgets['budget category'].lower() == category:
+            total_expenses = budgets['current expenses'] + expense_amount
+            remaining_budget = budgets['budget amount'] - total_expenses
+            cell_row = budgets_data.index(budgets) + 2
+            budgets_worksheet.update_cell(cell_row, 3, total_expenses) 
+            budgets_worksheet.update_cell(cell_row, 4, remaining_budget)  
+            break
 
 def update_budget_amount(category, new_budget_amount):
     """
