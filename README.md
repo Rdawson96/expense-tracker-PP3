@@ -54,3 +54,20 @@
 ### Flowchart
 
 The following flowchart was designed using [draw.io](https://app.diagrams.net/)
+
+## Features
+
+### Add Expense
+Users can add a new expense to their budget plan by providing details such as expense name, amount, date, and category.
+
+### View Expenses
+Users can view all expenses recorded in their budget plan, including details such as expense name, amount, date, and category.
+
+### View Expenses by Category
+Users can view expenses filtered by category, allowing them to see expenses specific to a particular category.
+
+### Set Up New Budget / Edit Existing Budget
+Users can set up a new budget or edit an existing budget for different expense categories. They can specify the budget amount and track their expenses against it.
+
+### View Budgets
+Users can view all budgets they have set up, including details such as category, budget amount, current expenses, and remaining budget.
