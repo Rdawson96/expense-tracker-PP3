@@ -1,5 +1,10 @@
 # Expense Tracker
 
+
+The Expense Tracker app aims to simplify financial management by providing users with tools to track expenses, manage budgets, and analyze spending habits efficiently.
+
+visit the deployed site here:
+
 ## Table of Contents
 1. [User Experience (UX)](#user-experience-UX)
     1. [Project Goals](#project-goals)
@@ -21,7 +26,6 @@
     3. [Manual Testing](#manual-testing)
 5. [Deployment](#deployment)
 6. [Credits](#credits)
-7. [Acknowledgements](#acknowledgements)
 
 ***
 ## User Experience
@@ -98,9 +102,13 @@ Users can view all budgets they have set up, including details such as category,
 
 ### Code validation
 
-[Code Institutes Python Linter](https://pep8ci.herokuapp.com/#) was used to help me validate my code. I pointed out that I had a lot of missing blank lines between functions, redundant white space and that a lot of my lines were greater than 79 characters long.
+* [Code Institutes Python Linter](https://pep8ci.herokuapp.com/#) was used to help me validate my code. It pointed out that I had a lot of missing blank lines between functions, redundant white space and that a lot of my lines were greater than 79 characters long.
 
+![CI Python Linter with errors](assets/images/validator-with-errors.png)
 
+* I have fixed all the errors that arose
+
+![CI Python Linter with no errors](assets/images/validator-blank.png)
 
 ### Manual testing
 
@@ -140,13 +148,11 @@ Users can view all budgets they have set up, including details such as category,
       <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>Validate expense amount is a number</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td></td>
       <td>Validate expense amount is to two decimal places</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
