@@ -15,11 +15,11 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('expense_tracker_PP3')
 
 # ANSI escape code colors
-PURPLE = "\033[95m"     # Main Title color
-LIGHT_BLUE = "\033[94m" # Welcome paragraph color
-RED = "\033[91m"        # Error message color
-GREEN = "\033[92m"      # Input color
-RESET = "\033[0m"       # Reset to default color
+PURPLE = "\033[95m"         # Main Title color
+LIGHT_BLUE = "\033[94m"     # Welcome paragraph color
+RED = "\033[91m"            # Error message color
+GREEN = "\033[92m"          # Input color
+RESET = "\033[0m"           # Reset to default color
 
 # Define maximum lengths for expense name and category
 MAX_EXPENSE_LENGTH = 25
@@ -53,21 +53,21 @@ def is_valid_date(date_str):
 
 def main_menu():
     print(PURPLE + """
- #######                                                     
- #        #    #  #####   ######  #    #   ####   ######     
- #         #  #   #    #  #       ##   #  #       #          
- #####      ##    #    #  #####   # #  #   ####   #####      
- #          ##    #####   #       #  # #       #  #          
- #         #  #   #       #       #   ##  #    #  #          
- #######  #    #  #       ######  #    #   ####   ######     
-                                                             
- #######                                                     
-    #     #####     ##     ####   #    #  ######  #####      
-    #     #    #   #  #   #    #  #   #   #       #    #     
-    #     #    #  #    #  #       ####    #####   #    #     
-    #     #####   ######  #       #  #    #       #####      
-    #     #   #   #    #  #    #  #   #   #       #   #      
-    #     #    #  #    #   ####   #    #  ######  #    #    
+ #######
+ #        #    #  #####   ######  #    #   ####   ######
+ #         #  #   #    #  #       ##   #  #       #
+ #####      ##    #    #  #####   # #  #   ####   #####
+ #          ##    #####   #       #  # #       #  #
+ #         #  #   #       #       #   ##  #    #  #
+ #######  #    #  #       ######  #    #   ####   ######
+\n
+ #######
+    #     #####     ##     ####   #    #  ######  #####
+    #     #    #   #  #   #    #  #   #   #       #    #
+    #     #    #  #    #  #       ####    #####   #    #
+    #     #####   ######  #       #  #    #       #####
+    #     #   #   #    #  #    #  #   #   #       #   #
+    #     #    #  #    #   ####   #    #  ######  #    #
     """ + RESET)
     print(LIGHT_BLUE + "Welcome to your personal Expense Tracker! "
           "Please select an option below:\n" + RESET)
@@ -95,11 +95,13 @@ def add_expense():
                         f"for example 'Rent' (up to {MAX_EXPENSE_LENGTH}"
                         " characters):\n" + RESET)
         if len(expense) == 0:
-            print(RED + "Invalid expense description must be more than 0 characters.\n" + RESET)
+            print(RED + "Invalid expense "
+                  "description must be more than 0 characters.\n"
+                  + RESET)
         elif len(expense) > MAX_EXPENSE_LENGTH:
-            print(
-                RED + f"Expense name exceeds maximum length of {MAX_EXPENSE_LENGTH} "
-                "characters Please try again:\n" + RESET)
+            print(RED + f"Expense name "
+                  "exceeds maximum length of {MAX_EXPENSE_LENGTH} "
+                  "characters Please try again:\n" + RESET)
         else:
             break
 
@@ -112,8 +114,10 @@ def add_expense():
 
     date = input(GREEN + "\nEnter the expense date (DD/MM/YYYY):\n" + RESET)
     while not is_valid_date(date):
-        date = input(RED + "\nInvalid date format or date is too far in the past/future."
-                     " Please use DD/MM/YYYY format and ensure it's within one year from today:\n" + RESET)
+        date = input(RED + "\nInvalid date format "
+                     "or date is too far in the past/future. "
+                     "Please use DD/MM/YYYY format and ensure it's "
+                     "within one year from today:\n" + RESET)
 
     category = select_category()
 
@@ -146,9 +150,12 @@ def select_category():
                 return listed_categories[choice - 1]
             else:
                 print(RED + "Invalid choice, "
-                      "please enter a number corresponding to the category." + RESET)
+                      "please enter a number corresponding to the category."
+                      + RESET)
         except ValueError:
-            print(RED + "Invalid choice, please enter a number between 1 and 6." + RESET)
+            print(RED +
+                  "Invalid choice, please enter a number between 1 and 6."
+                  + RESET)
 
 
 def view_expenses():
@@ -264,25 +271,31 @@ def setup_budget():
     Add new budget for the given category and check if a budget
     already exists for the specified category
     """
-    print(GREEN + "Select the category for the budget you would like to add/ update:" + RESET)
+    print(GREEN +
+          "Select the category for the budget you would like to add/ update:"
+          + RESET)
     category = select_category()
     budgets_worksheet = SHEET.worksheet('budgets')
     budgets_data = budgets_worksheet.get_all_records()
     for budget_row in budgets_data:
         if budget_row['budget category'].lower() == category.lower():
-            print(RED + f"\nA budget already exists for the category '{category}'." + RESET)
+            print(RED +
+                  f"\nA budget already exists for the category '{category}'."
+                  + RESET)
             update_option = input(GREEN +
                                   "\nDo you want to update the existing "
-                                  "budget? (yes/no):\n"+ RESET).lower()
+                                  "budget? (yes/no):\n" + RESET).lower()
             if update_option == 'yes':
-                new_budget_amount = input(GREEN + 
-                    "\nEnter the new budget amount: £"
-                    + RESET)
+                new_budget_amount = input(GREEN +
+                                          "\nEnter the new budget amount: £"
+                                          + RESET)
                 while not is_valid_number(new_budget_amount):
-                    new_budget_amount = input(
-                        RED + "\nInvalid input, the number needs to "
-                       "have exactly two decimal places.\n" + RESET
-                        )
+                    new_budget_amount = input(RED +
+                                              "\nInvalid input, "
+                                              "the number needs to "
+                                              "have exactly two "
+                                              "decimal places.\n"
+                                              + RESET)
                 new_budget_amount = float(new_budget_amount)
                 update_budget_amount(category, new_budget_amount)
                 return
@@ -291,9 +304,10 @@ def setup_budget():
                 return
 
     # If no existing budget found, proceed to set up a new budget
-    budget_amount = input(
-        GREEN + f"\nEnter the budget amount for '{category}'"
-        "(Has to be to two decimal places): £\n" + RESET)
+    budget_amount = input(GREEN +
+                          f"\nEnter the budget amount for '{category}'"
+                          "(Has to be to two decimal places): £\n"
+                          + RESET)
     while not is_valid_number(budget_amount):
         budget_amount = input(
             RED + "\nInvalid input, "
@@ -338,7 +352,7 @@ def main():
             elif expense_choice == '4':
                 continue
             else:
-                print("\nInvalid choice, please try again.\n")
+                print(RED + "\nInvalid choice, please try again.\n" + RESET)
         elif choice == '2':
             budgeting_choice = budgeting_menu()  # Capture the return value
             if budgeting_choice == '1':
@@ -348,12 +362,12 @@ def main():
             elif budgeting_choice == '3':
                 continue
             else:
-                print("\nInvalid choice, please try again.\n")
+                print(RED + "\nInvalid choice, please try again.\n" + RESET)
         elif choice == '3':
-            print("\nExiting...")
+            print("\nExiting Expense Tracker...")
             break
         else:
-            print("\nInvalid choice, please try again.\n")
+            print(RED + "\nInvalid choice, please try again.\n" + RESET)
 
 
 if __name__ == "__main__":
