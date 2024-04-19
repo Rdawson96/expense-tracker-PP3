@@ -1,6 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
-from datetime import datetime
+from datetime import datetime, timedelta
 from tabulate import tabulate
 
 SCOPE = [
@@ -42,8 +42,11 @@ def is_valid_date(date_str):
     Check if the input date is valid (DD/MM/YYYY format)
     """
     try:
-        datetime.strptime(date_str, "%d/%m/%Y")
-        return True
+        date = datetime.strptime(date_str, "%d/%m/%Y")
+        today = datetime.now()
+        one_year_ago = today - timedelta(days=365)
+        one_year_from_now = today + timedelta(days=365)
+        return one_year_ago <= date <= one_year_from_now
     except ValueError:
         return False
 
@@ -109,7 +112,8 @@ def add_expense():
 
     date = input(GREEN + "\nEnter the expense date (DD/MM/YYYY):\n" + RESET)
     while not is_valid_date(date):
-        date = input(RED + "\nInvalid date format please use DD/MM/YYYY format:\n" + RESET)
+        date = input(RED + "\nInvalid date format or date is too far in the past/future."
+                     " Please use DD/MM/YYYY format and ensure it's within one year from today:\n" + RESET)
 
     category = select_category()
 
