@@ -43,7 +43,7 @@ def is_valid_date(date_str):
 
 def main_menu():
     print("Welcome to your personal Expense Tracker "
-          "Please select an option below:\n")
+          "please select an option below:\n")
     print("1. Expenses")
     print("2. Budgeting")
     print("3. Exit")
@@ -51,7 +51,7 @@ def main_menu():
 
 
 def expense_menu():
-    print("Expenses\n")
+    print("Expenses Menu\n")
     print("1. Add a new expense")
     print("2. View all expenses")
     print("3. View expenses by category")
@@ -63,29 +63,29 @@ def add_expense():
     """
     Add a new expense
     """
-    expense = input(f"\nAdd a name for the expense. "
-                    f"For example 'Rent' (up to {MAX_EXPENSE_LENGTH}"
+    expense = input(f"\nAdd a name for the expense "
+                    f"for example 'Rent' (up to {MAX_EXPENSE_LENGTH}"
                     "characters):\n")
     while len(expense) == 0:
-        print("Invalid expense description. Must be more than 0 characters.\n")
+        print("Invalid expense description must be more than 0 characters.\n")
         expense = input(f"Enter the expense (up to {MAX_EXPENSE_LENGTH}"
                         "characters):\n")
 
     while len(expense) > MAX_EXPENSE_LENGTH:
         expense = input(
             f"Expense name exceeds maximum length of {MAX_EXPENSE_LENGTH}"
-            "characters. Please try again:\n")
+            "characters Please try again:\n")
 
     amount = input("\nEnter the expense amount"
                    "(Has to be to two decimal places): ")
     while not is_valid_number(amount):
-        amount = input("Invalid input. Please enter a valid number "
+        amount = input("Invalid input please enter a valid number "
                        "with exactly two decimal places for amount:\n")
     amount = float(amount)
 
     date = input("\nEnter the expense date (DD/MM/YYYY):\n")
     while not is_valid_date(date):
-        date = input("Invalid date format. Please use DD/MM/YYYY format:\n")
+        date = input("Invalid date format please use DD/MM/YYYY format:\n")
 
     category = select_category()
 
@@ -117,10 +117,10 @@ def select_category():
             if 1 <= choice <= len(listed_categories):
                 return listed_categories[choice - 1]
             else:
-                print("Invalid choice."
-                      "Please enter a number corresponding to the category.")
+                print("Invalid choice, "
+                      "please enter a number corresponding to the category.")
         except ValueError:
-            print("Invalid choice. Please enter a number.")
+            print("Invalid choice, please enter a number between 1 and 6.")
 
 
 def view_expenses():
@@ -161,7 +161,7 @@ def view_expenses_by_category():
 
 
 def budgeting_menu():
-    print("Budgeting:\n")
+    print("Budgeting Menu:\n")
     print("1. Set up new budget/ Edit existing budget")
     print("2. View budgets")
     print("3. Return to main menu")
@@ -244,14 +244,14 @@ def setup_budget():
         if budget_row['budget category'].lower() == category.lower():
             print(f"\nA budget already exists for the category '{category}'.")
             update_option = input(
-                                  "\nDo you want to update the existing"
+                                  "\nDo you want to update the existing "
                                   "budget? (yes/no):\n").lower()
             if update_option == 'yes':
                 new_budget_amount = input("\nEnter the new budget amount: £")
                 while not is_valid_number(new_budget_amount):
                     new_budget_amount = input(
-                        "\nInvalid input."
-                        "Please enter a valid number"
+                        "\nInvalid input, "
+                        "please enter a valid number "
                         "with exactly two decimal places:\n"
                         )
                 new_budget_amount = float(new_budget_amount)
@@ -267,8 +267,8 @@ def setup_budget():
         "(Has to be to two decimal places): £\n")
     while not is_valid_number(budget_amount):
         budget_amount = input(
-            "\nInvalid input."
-            "Please enter a valid number with exactly two decimal places:\n")
+            "\nInvalid input, "
+            "please enter a valid number with exactly two decimal places:\n")
     budget_amount = float(budget_amount)
 
     total_expenses = calculate_total_expenses(category)
@@ -308,7 +308,7 @@ def main():
             elif expense_choice == '4':
                 continue
             else:
-                print("\nInvalid choice. Please try again.\n")
+                print("\nInvalid choice, please try again.\n")
         elif choice == '2':
             budgeting_choice = budgeting_menu()  # Capture the return value
             if budgeting_choice == '1':
@@ -318,12 +318,12 @@ def main():
             elif budgeting_choice == '3':
                 continue
             else:
-                print("\nInvalid choice. Please try again.\n")
+                print("\nInvalid choice, please try again.\n")
         elif choice == '3':
             print("\nExiting...")
             break
         else:
-            print("\nInvalid choice. Please try again.\n")
+            print("\nInvalid choice, please try again.\n")
 
 
 if __name__ == "__main__":
