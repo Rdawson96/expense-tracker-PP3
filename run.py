@@ -42,7 +42,7 @@ def is_valid_date(date_str):
 
 
 def main_menu():
-    print("Welcome to your personal Expense Tracker."
+    print("Welcome to your personal Expense Tracker "
           "Please select an option below:\n")
     print("1. Expenses")
     print("2. Budgeting")
@@ -63,7 +63,7 @@ def add_expense():
     """
     Add a new expense
     """
-    expense = input(f"\nAdd a name for the expense."
+    expense = input(f"\nAdd a name for the expense. "
                     f"For example 'Rent' (up to {MAX_EXPENSE_LENGTH}"
                     "characters):\n")
     while len(expense) == 0:
@@ -112,7 +112,7 @@ def select_category():
 
     while True:
         try:
-            choice = int(input("\nEnter the number corresponding"
+            choice = int(input("\nEnter the number corresponding "
                                "to the category:\n"))
             if 1 <= choice <= len(listed_categories):
                 return listed_categories[choice - 1]
@@ -180,9 +180,9 @@ def view_budgets():
     else:
         budgets_list = [list(budget.values()) for budget in budgets_data]
         headers = ["Category",
-                   "Budget Amount (£)",
-                   "Current Expenses (£)",
-                   "Remaining Budget (£)"]
+                   "Budget\nAmount (£)",
+                   "Current\nExpenses (£)",
+                   "Remaining\nBudget (£)"]
         print("\nList of budgets:")
         print(tabulate(budgets_list, headers=headers, tablefmt="grid"))
 
