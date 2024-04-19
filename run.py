@@ -66,8 +66,8 @@ def main_menu():
     #     #   #   #    #  #    #  #   #   #       #   #      
     #     #    #  #    #   ####   #    #  ######  #    #    
     """ + RESET)
-    print(LIGHT_BLUE + "Welcome to your personal Expense Tracker "
-          "please select an option below:\n" + RESET)
+    print(LIGHT_BLUE + "Welcome to your personal Expense Tracker! "
+          "Please select an option below:\n" + RESET)
     print("1. Expenses")
     print("2. Budgeting")
     print("3. Exit")
@@ -87,18 +87,18 @@ def add_expense():
     """
     Add a new expense
     """
-    expense = input(GREEN + f"\nAdd a name for the expense "
-                    f"for example 'Rent' (up to {MAX_EXPENSE_LENGTH}"
-                    "characters):\n" + RESET)
-    while len(expense) == 0:
-        print(RED + "Invalid expense description must be more than 0 characters.\n" + RESET)
-        expense = input(GREEN + f"Enter the expense (up to {MAX_EXPENSE_LENGTH}"
-                        "characters):\n" + RESET)
-
-    while len(expense) > MAX_EXPENSE_LENGTH:
-        expense = input(
-            RED + f"\nExpense name exceeds maximum length of {MAX_EXPENSE_LENGTH} "
-            "characters Please try again:\n" + RESET)
+    while True:
+        expense = input(GREEN + f"\nAdd a name for the expense "
+                        f"for example 'Rent' (up to {MAX_EXPENSE_LENGTH}"
+                        " characters):\n" + RESET)
+        if len(expense) == 0:
+            print(RED + "Invalid expense description must be more than 0 characters.\n" + RESET)
+        elif len(expense) > MAX_EXPENSE_LENGTH:
+            print(
+                RED + f"Expense name exceeds maximum length of {MAX_EXPENSE_LENGTH} "
+                "characters Please try again:\n" + RESET)
+        else:
+            break
 
     amount = input(GREEN + "\nEnter the expense amount "
                    "(Has to be to two decimal places):" + RESET)
