@@ -27,6 +27,8 @@ visit the deployed site [here](https://expense-tracker-pp3-3b6c5c8af8ba.herokuap
     3. [Manual Testing](#manual-testing)
 5. [Deployment](#deployment)
 6. [Credits](#credits)
+    1. [Media](#media)
+    1. [Code](#code)
 
 ***
 ## User Experience
@@ -40,6 +42,8 @@ visit the deployed site [here](https://expense-tracker-pp3-3b6c5c8af8ba.herokuap
 * Category-Based Budgeting: Enable users to set up budgets for different expense categories to better manage their finances.
 
 * Real-Time Updates: Provide real-time updates on expenses and budgets to keep users informed about their financial status.
+
+* The target audience for my expense tracker app includes individuals and small businesses seeking to manage and monitor their finances effectively.
 
 ### User stories
 * As a user, I want to add new expenses to my budget plan, including details such as expense name, amount, date, and category, so that I can keep track of my spending habits accurately.
@@ -284,6 +288,12 @@ Users can view all budgets they have set up, including details such as category,
     </tr>
 </table>
 
+### Bugs
+
+* During the testing of my code I missed an fname causing the incorrect data being printed to the terminal
+
+* In testing the site, another issue arose where after the user incorrectly input the expense amount once, they were prompted to input it again. The code allowed the user to proceed without entering an amount the second time.
+
 ## Deployment 
 
 The application has been deployed using [Heroku](https://id.heroku.com/) by following these steps:
@@ -317,5 +327,5 @@ The application has been deployed using [Heroku](https://id.heroku.com/) by foll
 - This [Geeks for Geeks](https://www.geeksforgeeks.org/print-colors-python-terminal/) article was used to help me with the text color codes.
 - [W3Schools](https://www.w3schools.com/) was referenced throughout the creation of the project.
 - [Stack overflow](https://stackoverflow.com/) was referenced throughout the creation of the project.
-- For README.md file, reference from my first project was considered.
+- For README.md file, reference from my first and second project was considered.
 - Thanks to my mentor Marcel Mulders for his constructive feedback.
