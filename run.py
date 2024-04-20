@@ -171,7 +171,7 @@ def view_expenses():
         table = tabulate(expenses_list, headers=headers, tablefmt="grid")
         print("\nList of expenses:")
         print(table)
-    input("\nPress Enter to return to the main menu...\n")
+    input("\nPress any key to return to the main menu...\n")
 
 
 def view_expenses_by_category():
@@ -221,7 +221,7 @@ def view_budgets():
         print("\nList of budgets:")
         print(tabulate(budgets_list, headers=headers, tablefmt="grid"))
 
-    input("\nPress Enter to return to the main menu...\n")
+    input("\nPress any key to return to the main menu...\n")
 
 
 def update_budget(category, expense_amount):
@@ -342,32 +342,43 @@ def main():
     while True:
         choice = main_menu()
         if choice == '1':
-            expense_choice = expense_menu()  # Capture the return value
-            if expense_choice == '1':
-                add_expense()
-            elif expense_choice == '2':
-                view_expenses()
-            elif expense_choice == '3':
-                view_expenses_by_category()
-            elif expense_choice == '4':
-                continue
-            else:
-                print(RED + "\nInvalid choice, please try again.\n" + RESET)
+            while True:
+                expense_choice = expense_menu()  # Capture the return value
+                if expense_choice == '1':
+                    add_expense()
+                elif expense_choice == '2':
+                    view_expenses()
+                elif expense_choice == '3':
+                    view_expenses_by_category()
+                elif expense_choice == '4':
+                    break  # Break out of the inner loop to return to main menu
+                else:
+                    print(RED +
+                          "\nInvalid choice, please choose a "
+                          "number between 1 and 4.\n"
+                          + RESET)
         elif choice == '2':
-            budgeting_choice = budgeting_menu()  # Capture the return value
-            if budgeting_choice == '1':
-                setup_budget()
-            elif budgeting_choice == '2':
-                view_budgets()
-            elif budgeting_choice == '3':
-                continue
-            else:
-                print(RED + "\nInvalid choice, please try again.\n" + RESET)
+            while True:
+                budgeting_choice = budgeting_menu()  # Capture the return value
+                if budgeting_choice == '1':
+                    setup_budget()
+                elif budgeting_choice == '2':
+                    view_budgets()
+                elif budgeting_choice == '3':
+                    break  # Break out of the inner loop to return to main menu
+                else:
+                    print(RED +
+                          "\nInvalid choice, please choose a "
+                          "number between 1 and 3.\n"
+                          + RESET)
         elif choice == '3':
             print("\nExiting Expense Tracker...")
             break
         else:
-            print(RED + "\nInvalid choice, please try again.\n" + RESET)
+            print(RED +
+                  "\nInvalid choice, please choose a "
+                  "number between 1 and 3.\n"
+                  + RESET)
 
 
 if __name__ == "__main__":
