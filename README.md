@@ -55,6 +55,12 @@ visit the deployed site here:
 
 ### Data Model
 
+* Data Model and Application Features
+    * The Expense Tracker app employs a Google Sheets-based data model, comprising two sheets: Expenses and Budgets. The Expenses sheet records individual expenses, while the Budgets sheet tracks budget details for various spending categories.
+
+* Data Manipulation
+    * Users can add, view, and manage expenses and budgets through the app. Input validation ensures data integrity when adding expenses, and updates to budget categories are automatically reflected based on expense entries.
+
 ### Flowchart
 
 The following flowchart was designed using [draw.io](https://app.diagrams.net/)
@@ -96,6 +102,9 @@ Users can view all budgets they have set up, including details such as category,
 
 * [draw.io](https://app.diagrams.net/) was used to create the flowchart diagram
 
+* Google sheets was used to read and write data to
+
+
 ## Testing
 
 ### Testing User Stories
@@ -121,103 +130,123 @@ Users can view all budgets they have set up, including details such as category,
     </tr>
     <tr>
       <td rowspan="2">Main Menu</td>
-      <td>Validate if input is not a number</td>
+      <td>Enter a non-numeric character and ensure it prompts with the appropriate error message.</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Validate if number isn't in selection</td>
+      <td>Enter a numeric character that is not within the selection range and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
       <td rowspan="2">Expense Menu</td>
-      <td>Validate if input is not a number</td>
+      <td>Enter a non-numeric character and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Validate if number isn't in selection</td>
+      <td>Enter a numeric character that is not within the selection range and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td rowspan="6">Add New Expense</td>
-      <td>Validate expense name</td>
+      <td rowspan="2">Add New Expense - Validate expense name</td>
+      <td>Leave the expense name empty and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Validate expense amount is a number</td>
+      <td>Enter an expense name that exceeds the maximum allowed length and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Validate expense amount is to two decimal places</td>
+      <td rowspan="2">Add New Expense - Validate expense amount</td>
+      <td>Enter a non-numeric value and ensure it prompts with the appropriate error message</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Enter an invalid amount with more or less than two decimal places and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
       <td>Validate expense date format</td>
+      <td>Enter an invalid date format and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Validate expense category is a number in list</td>
+      <td rowspan="2">Validate expense category</td>
+      <td>Enter a non-numeric value and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Validate expense category is a number</td>
+      <td>Enter a numeric value that is not within the selection range and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
       <td rowspan="2">View All Expenses</td>
-      <td>Display expense table</td>
+      <td>Verify that the expense table is displayed correctly</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Option to go back to menu</td>
+      <td>Press any key to return to the main menu</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
       <td rowspan="2">View Expenses by Category</td>
-      <td>Display list of categories</td>
+      <td>Verify that a list of available categories is displayed</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Option to go back to menu</td>
+      <td>Press any key to return to the main menu</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
       <td>Budget Menu</td>
-      <td>Budget category</td>
+      <td>Verify that the budget category is displayed correctly</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td rowspan="4">Set up new/ Edit existing budget</td>
-      <td>Budget amount is a number</td>
+      <td rowspan="2">Set up new/ Edit existing budget - Validate budget amount</td>
+      <td>Enter a non-numeric value and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Budget amount is to two decimal places</td>
+      <td>Enter an invalid amount with more or less than two decimal places and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Duplicate budget category (Yes/No)</td>
+      <td rowspan="2">Set up new/ Edit existing budget</td>
+      <td>Check for duplicate budget categories and ensure it prompts with the appropriate error message</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>
     <tr>
-      <td>Enter new budget amount</td>
+      <td>Provide an option to enter a new budget amount</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td rowspan="2">Real-time Calculations</td>
+      <td>Verify that budget calculations are accurate and updated in real-time</td>
+      <td>IMAGE PLACEHOLDER</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Verify that remaining budget amounts are calculated correctly</td>
       <td>IMAGE PLACEHOLDER</td>
       <td></td>
     </tr>

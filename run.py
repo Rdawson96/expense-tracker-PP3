@@ -71,9 +71,9 @@ def main_menu():
     """ + RESET)
     print(LIGHT_BLUE + "Welcome to your personal Expense Tracker! "
           "Please select an option below:\n" + RESET)
-    print("1. Expenses")
-    print("2. Budgeting")
-    print("3. Exit")
+    print("1. Expenses menu")
+    print("2. Budgeting menu")
+    print("3. Exit application")
     return input(GREEN + "\nEnter your choice:\n" + RESET)
 
 
@@ -168,7 +168,7 @@ def view_expenses():
     else:
         expenses_list = [list(expense.values()) for expense in expenses_data]
         headers = ["Expense", "Amount (£)", "Date", "Category"]
-        table = tabulate(expenses_list, headers=headers, tablefmt="grid")
+        table = tabulate(expenses_list, headers=headers, tablefmt="grid", floatfmt=".2f")
         print("\nList of expenses:")
         print(table)
     input("\nPress any key to return to the Expenses menu...\n")
@@ -191,7 +191,7 @@ def view_expenses_by_category():
             expenses_list.append(list(expense.values()))
 
         headers = ["Expense", "Amount (£)", "Date", "Category"]
-        print(tabulate(expenses_list, headers=headers, tablefmt="grid"))
+        print(tabulate(expenses_list, headers=headers, tablefmt="grid", floatfmt=".2f"))
     input("\nPress any key to return to the Expenses menu...\n")
 
 
@@ -219,7 +219,7 @@ def view_budgets():
                    "Current\nExpenses (£)",
                    "Remaining\nBudget (£)"]
         print("\nList of budgets:")
-        print(tabulate(budgets_list, headers=headers, tablefmt="grid"))
+        print(tabulate(budgets_list, headers=headers, tablefmt="grid", floatfmt=".2f"))
 
     input("\nPress any key to return to the Budgets menu...\n")
 
