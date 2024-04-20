@@ -142,23 +142,23 @@ Users can view all budgets they have set up, including details such as category,
     <tr>
       <td rowspan="2">Main Menu</td>
       <td>Enter a non-numeric character and ensure it prompts with the appropriate error message.</td>
-      <td><img src="assets/images/main-menu-non-numeric.png" alt="non numeric value error screenshot"></td>
+      <td><img src=assets/images/main-menu-non-numeric.png alt="non numeric value error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>
       <td>Enter a numeric character that is not within the selection range and ensure it prompts with the appropriate error message</td>
-      <td><img src="assets/images/main-menu-num-high.png" alt="out of selection range error screenshot"></td>
+      <td><img src=assets/images/main-menu-num-high.png alt="out of selection range error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Expense Menu</td>
       <td>Enter a non-numeric character and ensure it prompts with the appropriate error message</td>
-      <td><img src="assets/images/main-menu-non-numeric.png" alt="non numeric value error screenshot"></td>
+      <td><img src=assets/images/main-menu-non-numeric.png alt="non numeric value error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>
       <td>Enter a numeric character that is not within the selection range and ensure it prompts with the appropriate error message</td>
-      <td><img src="assets/images/expenses-menu-num-high.png" alt="out of selection range error screenshot"></td>
+      <td><img src=assets/images/expenses-menu-num-high.png alt="out of selection range error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>

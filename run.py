@@ -100,7 +100,7 @@ def add_expense():
                   + RESET)
         elif len(expense) > MAX_EXPENSE_LENGTH:
             print(RED + f"Expense name "
-                  "exceeds maximum length of {MAX_EXPENSE_LENGTH} "
+                  f"exceeds maximum length of {MAX_EXPENSE_LENGTH} "
                   "characters Please try again:\n" + RESET)
         else:
             break
