@@ -142,91 +142,96 @@ Users can view all budgets they have set up, including details such as category,
     <tr>
       <td rowspan="2">Main Menu</td>
       <td>Enter a non-numeric character and ensure it prompts with the appropriate error message.</td>
-      <td><img src=assets/images/main-menu-non-numeric.png alt="non numeric value error screenshot"></td>
+      <td><img src="assets/images/main-menu-non-numeric.png" alt="non numeric value error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>
       <td>Enter a numeric character that is not within the selection range and ensure it prompts with the appropriate error message</td>
-      <td><img src=assets/images/main-menu-num-high.png alt="out of selection range error screenshot"></td>
+      <td><img src="assets/images/main-menu-num-high.png" alt="out of selection range error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Expense Menu</td>
       <td>Enter a non-numeric character and ensure it prompts with the appropriate error message</td>
-      <td><img src=assets/images/main-menu-non-numeric.png alt="non numeric value error screenshot"></td>
+      <td><img src="assets/images/main-menu-non-numeric.png" alt="non numeric value error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>
       <td>Enter a numeric character that is not within the selection range and ensure it prompts with the appropriate error message</td>
-      <td><img src=assets/images/expenses-menu-num-high.png alt="out of selection range error screenshot"></td>
+      <td><img src="assets/images/expenses-menu-num-high.png" alt="out of selection range error screenshot"></td>
       <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Add New Expense - Validate expense name</td>
       <td>Leave the expense name empty and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/expense-name-blank.png" alt="expense name blank error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Enter an expense name that exceeds the maximum allowed length and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/expense-name-too-long.png" alt="expense name too long error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Add New Expense - Validate expense amount</td>
       <td>Enter a non-numeric value and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/expense-amount-numeric.png" alt="non numeric value error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Enter an invalid amount with more or less than two decimal places and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/expense-amount-decimals.png" alt="expense value error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
-      <td>Validate expense date format</td>
+      <td rowspan="2">Validate expense date format</td>
       <td>Enter an invalid date format and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/expense-date-non-date.png" alt="non numeric value error screenshot"></td>
+      <td>PASS</td>
+    </tr>
+    <tr>
+      <td>Enter an invalid date format in the future and ensure it prompts with the appropriate error message</td>
+      <td><img src="assets/images/expense-date-future.png" alt="expense date error screenshot"></td>
+      <td>PASS</td>
+    </tr>
+    <tr>
+      <td>Enter an invalid date format in the futpasture and ensure it prompts with the appropriate error message</td>
+      <td><img src="assets/images/expense-date-past.png" alt="expense date error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Validate expense category</td>
       <td>Enter a non-numeric value and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/expense-category-non-numeric.png" alt="non numeric value error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Enter a numeric value that is not within the selection range and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/expenses-category-num-high.png" alt="out of selection range error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">View All Expenses</td>
       <td>Verify that the expense table is displayed correctly</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Press any key to return to the main menu</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">View Expenses by Category</td>
       <td>Verify that a list of available categories is displayed</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Press any key to return to the main menu</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Budget Menu</td>
       <td>Verify that the budget category is displayed correctly</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Set up new/ Edit existing budget - Validate budget amount</td>
@@ -253,13 +258,11 @@ Users can view all budgets they have set up, including details such as category,
     <tr>
       <td rowspan="2">Real-time Calculations</td>
       <td>Verify that budget calculations are accurate and updated in real-time</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Verify that remaining budget amounts are calculated correctly</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>PASS</td>
     </tr>
 </table>
 
