@@ -171,7 +171,7 @@ def view_expenses():
         table = tabulate(expenses_list, headers=headers, tablefmt="grid")
         print("\nList of expenses:")
         print(table)
-    input("\nPress any key to return to the main menu...\n")
+    input("\nPress any key to return to the Expenses menu...\n")
 
 
 def view_expenses_by_category():
@@ -192,7 +192,7 @@ def view_expenses_by_category():
 
         headers = ["Expense", "Amount (£)", "Date", "Category"]
         print(tabulate(expenses_list, headers=headers, tablefmt="grid"))
-    input("\nPress Enter to return to the main menu...\n")
+    input("\nPress any key to return to the Expenses menu...\n")
 
 
 def budgeting_menu():
@@ -221,7 +221,7 @@ def view_budgets():
         print("\nList of budgets:")
         print(tabulate(budgets_list, headers=headers, tablefmt="grid"))
 
-    input("\nPress any key to return to the main menu...\n")
+    input("\nPress any key to return to the Budgets menu...\n")
 
 
 def update_budget(category, expense_amount):
