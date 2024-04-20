@@ -1,5 +1,6 @@
 # Expense Tracker
 
+![Main menu screenshot](assets/images/main-menu.png)
 
 The Expense Tracker app aims to simplify financial management by providing users with tools to track expenses, manage budgets, and analyze spending habits efficiently.
 
@@ -70,17 +71,27 @@ The following flowchart was designed using [draw.io](https://app.diagrams.net/)
 ### Add Expense
 Users can add a new expense to their budget plan by providing details such as expense name, amount, date, and category.
 
+![Add expense screenshot](assets/images/add-new-expense.png)
+
 ### View Expenses
 Users can view all expenses recorded in their budget plan, including details such as expense name, amount, date, and category.
+
+![View expenses table screenshot](assets/images/view-expenses.png)
 
 ### View Expenses by Category
 Users can view expenses filtered by category, allowing them to see expenses specific to a particular category.
 
+![View expenses table by category screenshot](assets/images/view-expense-by-category.png)
+
 ### Set Up New Budget / Edit Existing Budget
 Users can set up a new budget or edit an existing budget for different expense categories. They can specify the budget amount and track their expenses against it.
 
+![Set up new budget screenshot](assets/images/add-new-budget.png)
+
 ### View Budgets
 Users can view all budgets they have set up, including details such as category, budget amount, current expenses, and remaining budget.
+
+![View budgets table screenshot](assets/images/view-budget.png)
 
 ## Technologies Used
 
