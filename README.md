@@ -2,7 +2,7 @@
 
 ![Main menu screenshot](assets/images/main-menu.png)
 
-The Expense Tracker app aims to simplify financial management by providing users with tools to track expenses, manage budgets, and analyze spending habits efficiently.
+The Expense Tracker app aims to simplify financial management by providing users with tools to track expenses, manage budgets, and analyse spending habits efficiently.
 
 visit the deployed site [here](https://expense-tracker-pp3-3b6c5c8af8ba.herokuapp.com/)
 
@@ -46,7 +46,7 @@ visit the deployed site [here](https://expense-tracker-pp3-3b6c5c8af8ba.herokuap
 
 * As a user, I want to view all expenses recorded in my budget plan, including details such as expense name, amount, date, and category, so that I can review my spending history.
 
-* As a user, I want to view expenses filtered by category, allowing me to see expenses specific to a particular category and analyze my spending patterns.
+* As a user, I want to view expenses filtered by category, allowing me to see expenses specific to a particular category and analyse my spending patterns.
 
 * As a user, I want to set up new budgets or edit existing budgets for different expense categories, specifying the budget amount and tracking my expenses against it.
 
@@ -59,12 +59,18 @@ visit the deployed site [here](https://expense-tracker-pp3-3b6c5c8af8ba.herokuap
 * Data Model and Application Features
     * The Expense Tracker app employs a Google Sheets-based data model, comprising two sheets: Expenses and Budgets. The Expenses sheet records individual expenses, while the Budgets sheet tracks budget details for various spending categories.
 
+![Expenses sheet screenshot](assets/images/sheets-expenses.png)
+
 * Data Manipulation
     * Users can add, view, and manage expenses and budgets through the app. Input validation ensures data integrity when adding expenses, and updates to budget categories are automatically reflected based on expense entries.
+
+![Budgets sheet screenshot](assets/images/sheets-budgets.png)
 
 ### Flowchart
 
 The following flowchart was designed using [draw.io](https://app.diagrams.net/)
+
+![Image of flowchart](assets/images/flowchart.png)
 
 ## Features
 
@@ -119,6 +125,18 @@ Users can view all budgets they have set up, including details such as category,
 ## Testing
 
 ### Testing User Stories
+
+* As a user, I want to ensure that I can add a new expense with valid information, including the expense name, amount, date, and category, so that accurate expense records are maintained.
+
+* As a user, I want to verify that I can view all expenses recorded in the system, including their details such as name, amount, date, and category, to ensure that the expense data is correctly displayed.
+
+* As a user, I want to confirm that I can view expenses filtered by category, allowing me to review expenses specific to a particular category for better analysis.
+
+* As a user, I want to test the budget setup feature to ensure that I can set up or modify budgets accurately, with real-time calculations providing insights into my financial status.
+
+* As a user, I want to validate that the application accurately calculates remaining budget amounts based on the expenses incurred, ensuring that budgeting decisions are informed and accurate.
+
+* As a user, I want to ensure that data manipulation functions work correctly, allowing me to update and retrieve expense and budget data accurately from the spreadsheet.
 
 ### Code validation
 
@@ -195,7 +213,7 @@ Users can view all budgets they have set up, including details such as category,
       <td>PASS</td>
     </tr>
     <tr>
-      <td>Enter an invalid date format in the futpasture and ensure it prompts with the appropriate error message</td>
+      <td>Enter an invalid date format in the past and ensure it prompts with the appropriate error message</td>
       <td><img src="assets/images/expense-date-past.png" alt="expense date error screenshot"></td>
       <td>PASS</td>
     </tr>
@@ -289,3 +307,15 @@ The application has been deployed using [Heroku](https://id.heroku.com/) by foll
 15. Choose "Automatic deploys" or "Manual deploys" to deploy your application.
 
 ## Credits
+
+### Media
+
+-[Many Tools](https://manytools.org/hacker-tools/ascii-banner/) was used to make the custom ASCII text banner on the main menu
+
+### Code
+- [Tabulate](https://pypi.org/project/tabulate/) was used to present the data into tables to make it readable
+- This [Geeks for Geeks](https://www.geeksforgeeks.org/print-colors-python-terminal/) article was used to help me with the text color codes.
+- [W3Schools](https://www.w3schools.com/) was referenced throughout the creation of the project.
+- [Stack overflow](https://stackoverflow.com/) was referenced throughout the creation of the project.
+- For README.md file, reference from my first project was considered.
+- Thanks to my mentor Marcel Mulders for his constructive feedback.
