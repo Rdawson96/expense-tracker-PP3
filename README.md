@@ -184,7 +184,7 @@ Users can view all budgets they have set up, including details such as category,
       <td>PASS</td>
     </tr>
     <tr>
-      <td rowspan="2">Validate expense date format</td>
+      <td rowspan="3">Validate expense date format</td>
       <td>Enter an invalid date format and ensure it prompts with the appropriate error message</td>
       <td><img src="assets/images/expense-date-non-date.png" alt="non numeric value error screenshot"></td>
       <td>PASS</td>
@@ -236,24 +236,24 @@ Users can view all budgets they have set up, including details such as category,
     <tr>
       <td rowspan="2">Set up new/ Edit existing budget - Validate budget amount</td>
       <td>Enter a non-numeric value and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/budget-numeric.png" alt="non numeric value error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Enter an invalid amount with more or less than two decimal places and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/budget-amount-decimals.png" alt="budget value error screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Set up new/ Edit existing budget</td>
-      <td>Check for duplicate budget categories and ensure it prompts with the appropriate error message</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td>Check for duplicate budget categories and ensure it prompts with the appropriate  message</td>
+      <td><img src="assets/images/budget-duplicate.png" alt="budget duplicate screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td>Provide an option to enter a new budget amount</td>
-      <td>IMAGE PLACEHOLDER</td>
-      <td></td>
+      <td><img src="assets/images/budget-duplicate-amount-new.png" alt="budget duplicate amount screenshot"></td>
+      <td>PASS</td>
     </tr>
     <tr>
       <td rowspan="2">Real-time Calculations</td>
